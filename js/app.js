@@ -21,7 +21,7 @@ let tweets = [];
 cargarListeners();
 function cargarListeners(){
     tweetForm.addEventListener('submit', agregarTweet);
-    alltweets.addEventListener('click', eliminarTweet);
+    allTweets.addEventListener('click', eliminarTweet);
     document.addEventListener('DOMContentLoaded', ()=>{
         tweets = JSON.parse(localStorage.getItem('tweets')) || [];
         tweetsHTML();
@@ -31,9 +31,9 @@ function agregarTweet(e){
     e.preventDefault();
     if(tweetElement.value === '') {
       const paragraph = document.createElement('p');
-      const errorMessage = 'no se puede ingresar un calor vacío';
+      const errorMessage = 'No se puede ingresar un valor vacío';
       paragraph.textContent = errorMessage;
-      paragraph.style.color = 'red';
+      paragraph.style.fontcolor = 'red';
       paragraph.classList.add('error');
       tweetForm.append(paragraph);
       return;// el return lo usamos para que no se siga ejecutando el codigo en caso de que estemos en el error
@@ -41,7 +41,7 @@ function agregarTweet(e){
         const paragraph = document.createElement('p');
       const errorMessage = 'no se puede ingresar un texto que supere los 140 caracteres';
       paragraph.textContent = errorMessage;
-      paragraph.style.color = 'red';
+      paragraph.style.fontcolor = 'red';
       paragraph.classList.add('error');
       tweetForm.append(paragraph);
       return;
@@ -90,8 +90,8 @@ function limpiarHTML(){
 function eliminarTweet(e){
     e.preventDefault()
     if(e.target.classList.contains('borrar-tweet')){
-        const tweetId = e.target.getAttribute('data-id');
-        tweets = tweets.filter(tweet => tweet.id !== tweetId);
+        const cursoId = e.target.getAttribute('data-id');
+        tweets = tweets.filter(tweet => tweet.id !== cursoId);
         tweetsHTML();
     }
 }
